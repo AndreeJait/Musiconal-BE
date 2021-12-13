@@ -13,6 +13,7 @@ const {
   create401Response,
   create200CountResponse,
 } = require("./responseController");
+const mentorStudent = require("../models/mentorStudent");
 
 /*
  * Role 1 is Customer
@@ -203,8 +204,8 @@ const makeUser = (req, res, next, stores, mentors) => {
  * }
  */
 exports.my_mentor = (req, res, next) => {
-  room
-    .find({ students: [req.body.customer] })
+  mentorStudent
+    .find({ students: req.body.id })
     .limit(req.body.limit)
     .skip(req.body.skip)
     .populate("mentor")
@@ -223,12 +224,12 @@ exports.my_mentor = (req, res, next) => {
  *  skip: number
  * }
  */
-exports.all_mentor_need_verifikasi = (req, res, next) => {
-  room
-    .find()
+exports.all_mentor = (req, res, next) => {
+  users
+    .find({ mentor: { $ne: null } })
     .limit(req.body.limit)
     .skip(req.body.skip)
-    .populate("mentor")
+    .populate({ path: "mentor" })
     .then((response) => {
       create200CountResponse(res, response, response.length);
     })
@@ -246,8 +247,8 @@ exports.all_mentor_need_verifikasi = (req, res, next) => {
  * }
  */
 exports.my_students = (req, res, next) => {
-  room
-    .find({ mentor: req.body.mentor })
+  mentorStudent
+    .find({ mentor: req.body.id })
     .limit(req.body.limit)
     .skip(req.body.skip)
     .populate("students")

@@ -30,6 +30,7 @@ app.use("/article", router.ARTICLE_ROUTER);
 app.use("/transaction", router.TRANSACTION_ROUTER);
 app.use("/mentor", router.MENTOR_ROUTER);
 app.use("/store", router.STORE_ROUTER);
+app.use("/tutorial", router.TUTORIAL_ROUTER);
 
 // Handle not found endpoint
 app.use((req, res, next) => {
