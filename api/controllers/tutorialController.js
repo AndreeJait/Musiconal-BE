@@ -8,6 +8,7 @@ const {
 exports.get_all_tutorial = (req, res, next) => {
   tutorial
     .find({})
+    .populate("created_by")
     .then((result) => {
       create200CountResponse(res, result, result.length);
     })
