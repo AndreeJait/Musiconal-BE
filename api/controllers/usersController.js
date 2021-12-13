@@ -120,7 +120,7 @@ exports.register_process = (req, res, next) => {
       education: req.body.education,
       description: req.body.description,
       payment: req.body.payment,
-      isVerification: false,
+      isVerification: 1,
     });
     new_mentor
       .save()

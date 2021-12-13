@@ -4,7 +4,7 @@ const mentorSchema = mongoose.Schema({
   address: { type: String, required: true },
   education: { type: String, required: true },
   doccument: [{ type: String }],
-  isVerification: { type: Boolean, default: false },
+  isVerification: { type: Number, default: 1 },
   payment: { type: String, required: true },
   description: { type: String, required: true },
   students: [{ type: mongoose.Schema.Types.ObjectId, ref: "mentor_student" }],
